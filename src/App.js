@@ -1,15 +1,24 @@
 import React from 'react';
 import './App.css';
 import SearchForm from './components/SearchForm';
+import SimilarInterests from './components/SimilarInterests';
+import { connect } from 'react-redux';
 
-function App() {
+const App = props => {
   return (
     <div className="App">
-      <header className="App-header">
         <SearchForm/>
-      </header>
+        {props.hasSearched ? <div>Please type in the name of a band or movie</div> : <SimilarInterests/>}
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+      hasSearched: state.results.hasSearched,
+  }
+}
+
+export default connect(mapStateToProps)(App);
+
+

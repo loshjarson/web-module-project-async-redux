@@ -6,16 +6,16 @@ export const GOT_SIMILAR_INTERESTS = "Got SimilarInterests";
 
 export const getSimilarInterests = interest => dispatch => {
     let altered = interest.split(' ').join('+');
-    axios.get(`https://tastedive.com/api/similar?q=${altered}`).then(result => {
-        console.log(result);
-        const similarInterests = result.data;
+    axios.get(`https://fierce-woodland-98215.herokuapp.com/https://tastedive.com/api/similar?q=${altered}`).then(result => {
+        const similarInterests = result.data.Similar.Results;
+        console.log(similarInterests)
         dispatch(gotSimilarInterests(similarInterests)) 
     })
 }
 
-export const gotSimilarInterests = (name) => {
-    console.log(name);
-    return {type: GOT_SIMILAR_INTERESTS, name}
+export const gotSimilarInterests = (similarInterests) => {
+    console.log(similarInterests);
+    return {type: GOT_SIMILAR_INTERESTS, similarInterests}
 }
 
 export const updateInterest = text => {
