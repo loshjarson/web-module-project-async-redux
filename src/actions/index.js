@@ -8,13 +8,13 @@ export const getSimilarInterests = interest => dispatch => {
     let altered = interest.split(' ').join('+');
     axios.get(`https://fierce-woodland-98215.herokuapp.com/https://tastedive.com/api/similar?q=${altered}`).then(result => {
         const similarInterests = result.data.Similar.Results;
-        console.log(similarInterests)
+        
         dispatch(gotSimilarInterests(similarInterests)) 
     })
 }
 
 export const gotSimilarInterests = (similarInterests) => {
-    console.log(similarInterests);
+    
     return {type: GOT_SIMILAR_INTERESTS, similarInterests}
 }
 
